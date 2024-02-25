@@ -1,22 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 19:51:22 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/19 12:00:06 by akajjou          ###   ########.fr       */
+/*   Created: 2023/11/06 01:32:27 by akajjou           #+#    #+#             */
+/*   Updated: 2023/11/29 20:32:56 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "libft.h"
 
-# include "LIBFT/libft.h"
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <time.h>
+char	*ft_strnstr(const char *str1, const char *str2, size_t len)
+{
+	size_t	i;
+	size_t	j;
 
-#endif
+	i = 0;
+	if (!*str2)
+		return ((char *)str1);
+	while (str1[i] && i < len)
+	{
+		j = 0;
+		while (str1[i + j] == str2[j] && str2[j] && i + j < len)
+		{
+			j++;
+		}
+		if (!str2[j])
+		{
+			return ((char *)(str1 + i));
+		}
+		i++;
+	}
+	return (NULL);
+}

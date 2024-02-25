@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 19:51:22 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/19 12:00:06 by akajjou          ###   ########.fr       */
+/*   Created: 2023/11/12 00:19:57 by akajjou           #+#    #+#             */
+/*   Updated: 2023/11/12 15:58:40 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "libft.h"
 
-# include "LIBFT/libft.h"
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <time.h>
+char	*ft_strdup(const char *s)
+{
+	size_t	i;
+	char	*new_string;
 
-#endif
+	i = ft_strlen(s) + 1;
+	new_string = (char *)malloc(i * sizeof(char));
+	if (new_string == NULL)
+	{
+		return (0);
+	}
+	ft_memcpy(new_string, s, i);
+	return (new_string);
+}

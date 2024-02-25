@@ -1,47 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   client.c                                           :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 19:16:12 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/22 16:37:23 by akajjou          ###   ########.fr       */
+/*   Created: 2023/11/10 20:48:22 by akajjou           #+#    #+#             */
+/*   Updated: 2023/11/20 00:50:41 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minitalk.h"
+#include "libft.h"
 
-void	ft_send_bits(int pid, char c)
+char	*ft_strrchr(const char *s, int c)
 {
 	int		i;
-	char	s;
+	char	k;
 
-	i = 7;
+	k = (char)c;
+	i = 0;
+	while (s[i])
+		i++;
 	while (i >= 0)
 	{
-		s = c >> i & 1;
-		if (s == 0)
-			kill(pid, SIGUSR2);
-		else
-			kill(pid, SIGUSR1);
+		if (s[i] == k)
+			return ((char *)&s[i]);
 		i--;
-		usleep(100);
 	}
-}
-
-int	main(int argc, char **argv)
-{
-	int	i;
-	int	pid;
-
-	i = 0;
-	if (argc != 3)
+	if (k == '\0')
 	{
-		ft_printf("PLEASE ENTER THE SERVER PID AND THE MESSAGE TO SEND\n");
-		return (1);
+		return ((char *)s);
 	}
-	pid = ft_atoi(argv[1]);
-	while (argv[2][i])
-		ft_send_bits(pid, argv[2][i++]);
+	return (0);
 }

@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 19:51:22 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/19 12:00:06 by akajjou          ###   ########.fr       */
+/*   Created: 2023/11/18 02:23:54 by akajjou           #+#    #+#             */
+/*   Updated: 2023/11/29 16:58:05 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "libft.h"
 
-# include "LIBFT/libft.h"
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <time.h>
-
-#endif
+void	ft_putchar_fd(char c, int fd)
+{
+	write(fd, &c, 1);
+}

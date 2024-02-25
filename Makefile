@@ -6,47 +6,57 @@
 #    By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/29 03:50:25 by jotavare          #+#    #+#              #
-#    Updated: 2024/02/19 10:56:44 by akajjou          ###   ########.fr        #
+#    Updated: 2024/02/22 17:55:50 by akajjou          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-LIBFT = libft/libft.a
-
 CC = cc
-CCFLAGS = cc -Wall -Werror -Wextra
+CFLAGS = -Wall -Wextra -Werror
+LIBFT = ./LIBFT/libft.a
+RM = rm -rf
 
 SERVER = server
 CLIENT = client
-SRCS_SERVER = server.c
-SRCS_CLIENT = client.c
-SRCS_SERVER_BONUS = server_bonus.c
-SRCS_CLIENT_BONUS = client_bonus.c
 
-OBJS_SERVER = $(SRCS_SERVER:.c=.o)
-OBJS_CLIENT = $(SRCS_CLIENT:.c=.o)
-OBJS_SERVER_BONUS = $(SRCS_SERVER_BONUS:.c=.o)
-OBJS_CLIENT_BONUS = $(SRCS_CLIENT_BONUS:.c=.o)
+SV_SRCS = server.c
+SV_OBJS = $(SV_SRCS:.c=.o)
 
+CLIENT_SRCS = client.c
+CLIENT_OBJS = $(CLIENT_SRCS:.c=.o)
+
+
+
+SERVER_BONUS = server_bonus
+CLIENT_BONUS = client_bonus
+
+SV_BONUS_SRCS = server_bonus.c
+SV_BONUS_OBJS = $(SV_BONUS_SRCS:.c=.o)
+
+CLIENT_BONUS_SRCS = client_bonus.c
+CLIENT_BONUS_OBJS = $(CLIENT_BONUS_SRCS:.c=.o)
 
 all: $(SERVER) $(CLIENT)
 
-$(SERVER) $(CLIENT): $(OBJS_SERVER) $(OBJS_CLIENT) $(LIBFT)
-		${CCFLAGS} ${OBJS_SERVER} libft/libft.a -o ${SERVER}
-		${CCFLAGS} ${OBJS_CLIENT} libft/libft.a -o ${CLIENT}
-
 $(LIBFT):
-		${MAKE} -C ./libft
+	$(MAKE) -C ./LIBFT
+$(SERVER): $(SV_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(SV_OBJS) $(LIBFT) -o server
+$(CLIENT): $(CLIENT_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(CLIENT_OBJS) $(LIBFT) -o client
+	
+$(SERVER_BONUS): $(SV_BONUS_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(SV_BONUS_OBJS) $(LIBFT) -o server_bonus
+$(CLIENT_BONUS): $(CLIENT_BONUS_OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(CLIENT_BONUS_OBJS) $(LIBFT) -o client_bonus
 
-bonus: ${OBJS_SERVER_BONUS} ${OBJS_CLIENT_BONUS} ${LIBFT}
-		${CCFLAGS} ${OBJS_SERVER_BONUS} libft/libft.a -o ${SERVER}
-		${CCFLAGS} ${OBJS_CLIENT_BONUS} libft/libft.a -o ${CLIENT}
+clean:
+	$(MAKE) clean -C ./LIBFT
+	$(RM) $(SV_OBJS) $(CLIENT_OBJS)
+	$(RM) $(SV_BONUS_OBJS) $(CLIENT_BONUS_OBJS) 
+fclean: clean
+	$(MAKE) fclean -C ./LIBFT
+	$(RM) $(SERVER) $(CLIENT)
+	$(RM) $(SERVER_BONUS) $(CLIENT_BONUS)
+re: fclean all
 
-clean:	
-		$(MAKE) clean -C ./libft
-		rm -rf ${OBJS_SERVER} ${OBJS_CLIENT} ${OBJS_SERVER_BONUS} ${OBJS_CLIENT_BONUS}
-
-fclean:	clean
-		$(MAKE) fclean -C ./libft
-		rm -rf $(SERVER) $(CLIENT)
-
-re:	fclean all
+bonus: $(SERVER_BONUS) $(CLIENT_BONUS)

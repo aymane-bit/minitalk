@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minitalk_bonus.h                                   :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/02/18 19:51:22 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/19 12:00:06 by akajjou          ###   ########.fr       */
+/*   Created: 2023/11/11 18:46:49 by akajjou           #+#    #+#             */
+/*   Updated: 2023/12/01 18:15:50 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINITALK_BONUS_H
-# define MINITALK_BONUS_H
+#include "libft.h"
 
-# include "LIBFT/libft.h"
-# include <signal.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <time.h>
+void	*ft_calloc(size_t nmemb, size_t size)
+{
+	void	*new_array;
 
-#endif
+	if (size > 0 && nmemb > (SIZE_MAX / size))
+		return (NULL);
+	new_array = (void *)malloc(nmemb * size);
+	if (new_array == NULL)
+	{
+		return (NULL);
+	}
+	ft_bzero(new_array, (nmemb * size));
+	if (new_array == NULL)
+	{
+		return (NULL);
+	}
+	return (new_array);
+}

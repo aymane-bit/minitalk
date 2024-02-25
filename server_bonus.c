@@ -6,16 +6,15 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:14:02 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/19 11:00:23 by akajjou          ###   ########.fr       */
+/*   Updated: 2024/02/22 16:36:55 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk_bonus.h"
 
-volatile int	g_sender_pid;
-
 void	ft_handler(int signal, siginfo_t *info, void *context)
 {
+	int			g_sender_pid;
 	static int	bit;
 	static int	i;
 

@@ -6,7 +6,7 @@
 /*   By: akajjou <akajjou@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/18 19:13:36 by akajjou           #+#    #+#             */
-/*   Updated: 2024/02/19 11:18:20 by akajjou          ###   ########.fr       */
+/*   Updated: 2024/02/22 16:12:19 by akajjou          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_send_bits(int pid, char c)
 			kill(pid, SIGUSR2);
 		else
 			kill(pid, SIGUSR1);
-		usleep(50);
+		usleep(500);
 		i++;
 	}
 }
