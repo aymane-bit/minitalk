@@ -17,8 +17,7 @@ Minitalk is a 42 project designed to explore inter-process communication (IPC) i
 - [Usage](#usage)
 - [Bonus Features](#bonus-features)
 - [Examples](#examples)
-- [Credits](#credits)
-
+  
 ## Overview
 
 Minitalk consists of two main components:
