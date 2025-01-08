@@ -38,8 +38,8 @@ This project demonstrates the basics of signal handling, process communication, 
 
 ### Bonus
 
-- The server can handle long messages seamlessly.
-- Multiple clients can communicate with the server concurrently.
+- The server acknowledges every message received by sending back a signal to the client.
+- Unicode characters support!
 
 ## Installation
 
